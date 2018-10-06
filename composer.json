@@ -1,0 +1,20 @@
+{
+  "name": "hemano/TestSteward",
+  "license": "MIT",
+  "prefer-stable": true,
+  "require": {
+    "lmc/steward": "^2.2",
+    "fzaninotto/faker": "~1.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "My\\Steward\\": "src/",
+      "My\\": "tests/"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "7.2"
+    }
+  }
+}
