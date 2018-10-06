@@ -16,8 +16,18 @@ jobs:
 
     working_directory: ~/repo
 
+    parallelism: 4
+
     steps:
     - checkout
+    - run:
+        command: ./vendor/bin/steward install 3.8.1
+        background: true
+    - run: sleep 10
+    - run:
+        command: java -jar ./vendor/bin/selenium-server-standalone-3.8.1.jar > /dev/null 2>&1 &
+        background: true
+    - run: sleep 10
 
     # Download and cache dependencies
     - restore_cache:
@@ -34,4 +44,4 @@ jobs:
         key: v1-dependencies-{{ checksum "composer.json" }}
 
     # run tests!
-    - run: ./vendor/bin/steward run staging chrome -v
+    - run: ./vendor/bin/steward run production chrome -vvv
